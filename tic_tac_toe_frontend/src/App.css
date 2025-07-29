@@ -3,11 +3,20 @@
   /* Light theme colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --text-primary: #222c38;
+  --text-secondary: #888888;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
+  --button-bg: #2196F3;
   --button-text: #ffffff;
+
+  /* Tic Tac Toe Theme */
+  --primary-color: #2196F3;
+  --secondary-color: #4CAF50;
+  --accent-color: #FFC107;
+  --ttt-board-bg: #fff;
+  --ttt-scorebar-bg: #f9f9fc;
+  --ttt-muted: #a9b0b6;
+  --ttt-bg: #fcfdff;
 }
 
 [data-theme="dark"] {
@@ -100,5 +109,173 @@
     right: 10px;
     padding: 8px 16px;
     font-size: 12px;
+  }
+}
+
+/* ---------- Tic Tac Toe Game Styles ----------- */
+
+.ttt-main-container {
+  max-width: 380px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.6rem 1.2rem;
+  min-height: 90vh;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-template-rows: repeat(3, 72px);
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  background: var(--ttt-board-bg);
+  border-radius: 22px;
+  margin: 22px 0 14px 0;
+  box-shadow: 0 2px 24px #3076c63a;
+  position: relative;
+}
+@media (max-width: 450px) {
+  .ttt-board {
+    grid-template-columns: repeat(3, 22vw);
+    grid-template-rows: repeat(3, 22vw);
+    min-width: 0;
+    max-width: 96vw;
+  }
+}
+
+.ttt-square {
+  background: #fbfbfc;
+  border: 2.5px solid var(--border-color, #e0e5e7);
+  border-radius: 12px;
+  font-size: 2.4rem;
+  min-width: 56px;
+  min-height: 56px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  transition: background 0.15s, color 0.18s, border 0.14s, box-shadow 0.16s;
+  color: var(--text-primary);
+}
+.ttt-square:focus {
+  outline: 3px solid var(--accent-color);
+}
+.ttt-square:disabled {
+  background: #ecebed;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+.ttt-square-win {
+  background: var(--accent-color);
+  color: #212121 !important;
+  box-shadow: 0 0 10px 1px #ffc10755;
+  border: 2.5px solid var(--primary-color);
+}
+
+/* Score/Info Bar */
+.ttt-scorebar {
+  width: 100%;
+  max-width: 360px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  margin-top: 11px;
+  padding: 10px 13px 10px 13px;
+  background: var(--ttt-scorebar-bg);
+  border-radius: 17px;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  box-shadow: 0 1px 7px #2196f312;
+  gap: 4px;
+}
+.ttt-scorebar > .ttt-score-center {
+  flex: 2;
+  color: var(--secondary-color);
+  text-align: center;
+  font-size: 1.09em;
+}
+.ttt-scorebar > .ttt-score-draw {
+  flex: 1.2;
+  text-align: right;
+  color: var(--accent-color);
+  font-weight: 500;
+}
+.ttt-scorebar > .ttt-score {
+  min-width: 47px;
+  text-align: left;
+}
+
+/* Controls area */
+.ttt-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8em;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0 4px 0;
+  width: 100%;
+}
+
+/* Minimal Button */
+.ttt-btn {
+  font-weight: 500;
+  font-size: 1em;
+  padding: 0.57em 1.2em;
+  border-radius: 9px;
+  background: #f7f7fa;
+  color: var(--primary-color);
+  border: 1.7px solid var(--primary-color);
+  cursor: pointer;
+  transition: 
+    background 0.13s, 
+    color 0.13s, 
+    border 0.11s, 
+    box-shadow 0.12s;
+  box-shadow: 0 1.5px 8px #2196f306;
+  outline: none;
+  margin-bottom: 2px;
+}
+.ttt-btn:hover, .ttt-btn:focus {
+  background: var(--primary-color);
+  color: #fff;
+}
+.ttt-btn-active,
+.ttt-btn:active {
+  background: var(--primary-color);
+  color: #fff;
+  border: 2.1px solid var(--secondary-color);
+}
+
+/* Footer / Credits */
+.ttt-credits {
+  text-align: center;
+  font-size: 0.96em;
+  color: var(--ttt-muted);
+  opacity: 0.75;
+  margin-bottom: 12px;
+}
+
+/* Small adjust for mobile */
+@media (max-width: 450px) {
+  .ttt-main-container {
+    padding: 0.7rem 2vw;
+    min-height: 97vh;
+    width: 100%;
+  }
+  .ttt-scorebar {
+    font-size: 1em;
+    padding: 7px 2vw;
+  }
+  .ttt-controls {
+    gap: 2vw;
   }
 }
